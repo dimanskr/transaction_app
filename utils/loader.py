@@ -7,6 +7,5 @@ def get_list_from_json_file(file_path) -> list:
     :param file_path
     :return list
     """
-    if file_path.is_file():
-        with open(file_path, 'r', encoding='utf-8') as file:
-            return json.load(file)
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return json.load(file)
