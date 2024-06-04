@@ -1,7 +1,7 @@
 import json
 
 
-def get_list_from_json_file(file_path) -> list:
+def get_list_from_json_file(file_path) -> list[dict]:
     """
     читаем json файл и возвращаем список объектов
     :param file_path
