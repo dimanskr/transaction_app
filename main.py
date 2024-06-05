@@ -8,9 +8,9 @@ def main():
     # список словарей из json файла
     operations_list = get_list_from_json_file(OPERATIONS_FILE)
     # список операций согласно статусу
-    operations = get_operations_by_status(operations_list, status="EXECUTED")
+    operations = get_operations_by_status("EXECUTED", *operations_list)
     # список последних операций
-    last_operations = get_last_operations(operations, OPERATIONS_COUNT)
+    last_operations = get_last_operations(OPERATIONS_COUNT, *operations)
     # выводим операции
     for operation in last_operations:
         print(output_operation_detail(operation))

@@ -1,6 +1,6 @@
 import pytest
 from models.operation import Operation
-from views.mask import payment_details, mask_number, output_operation_detail
+from views.mask import payment_details, output_operation_detail, mask_card_number, mask_account_number
 
 
 def test_payment_details():
@@ -11,11 +11,15 @@ def test_payment_details():
     assert payment_details("Invalid Data") is None
     assert payment_details("MasterCard 1234abcd5678efgh") is None
     assert payment_details("MasterCard 1234567890123456789") is None
+    assert payment_details("MasterCard 1234567890123456789123456789") is None
 
 
-def test_mask_number():
-    assert mask_number("1234567812345678") == "1234 56** **** 5678"
-    assert mask_number("12345678901234567890") == "**7890"
+def test_mask_card_number():
+    assert mask_card_number("1234567812345678") == "1234 56** **** 5678"
+
+
+def test_mask_account_number():
+    assert mask_account_number("12345678901234567890") == "**7890"
 
 
 def test_output_operation_detail():
