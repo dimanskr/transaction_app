@@ -3,15 +3,15 @@ from datetime import datetime
 
 class Operation:
     def __init__(self, data):
-        self.id = data.get("id", 0)
-        self.state = data.get("state", None)
-        self.date = datetime.strptime(data.get("date"), "%Y-%m-%dT%H:%M:%S.%f")
-        self.amount = float(data.get("operationAmount", {}).get("amount", 0.0))
-        self.currency_name = data.get("operationAmount", {}).get("currency", {}).get("name", None)
-        self.currency_code = data.get("operationAmount", {}).get("currency", {}).get("code", None)
-        self.description = data.get("description", None)
+        self.id = data["id"]
+        self.state = data["state"]
+        self.date = datetime.strptime(data["date"], "%Y-%m-%dT%H:%M:%S.%f")
+        self.amount = float(data["operationAmount"]["amount"])
+        self.currency_name = data["operationAmount"]["currency"]["name"]
+        self.currency_code = data["operationAmount"]["currency"]["code"]
+        self.description = data["description"]
         self.from_account = data.get("from", None)
-        self.to_account = data.get("to", None)
+        self.to_account = data["to"]
 
     def formated_date(self):
         """

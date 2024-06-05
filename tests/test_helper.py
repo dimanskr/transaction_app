@@ -70,12 +70,12 @@ def operations_data():
 
 def test_get_operations_by_status(operations_data):
     operations = operations_data
-    executed_operations = get_operations_by_status(operations, "EXECUTED")
+    executed_operations = get_operations_by_status("EXECUTED", *operations)
 
     assert len(executed_operations) == 2
     assert all(op.state == "EXECUTED" for op in executed_operations)
 
-    pending_operations = get_operations_by_status(operations, "PENDING")
+    pending_operations = get_operations_by_status("PENDING", *operations)
 
     assert len(pending_operations) == 1
     assert all(op.state == "PENDING" for op in pending_operations)
@@ -83,12 +83,12 @@ def test_get_operations_by_status(operations_data):
 
 def test_get_last_operations(operations_data):
     operations = [Operation(op) for op in operations_data]
-    last_operations = get_last_operations(operations, 2)
+    last_operations = get_last_operations(2, *operations)
 
     assert len(last_operations) == 2
     assert last_operations[0].date > last_operations[1].date
 
-    all_sorted_operations = get_last_operations(operations, len(operations))
+    all_sorted_operations = get_last_operations(len(operations), *operations)
 
     for i in range(len(all_sorted_operations) - 1):
         assert all_sorted_operations[i].date >= all_sorted_operations[i + 1].date
