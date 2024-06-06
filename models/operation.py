@@ -5,7 +5,7 @@ class Operation:
     def __init__(self, data):
         self.id = data["id"]
         self.state = data["state"]
-        self.date = datetime.strptime(data["date"], "%Y-%m-%dT%H:%M:%S.%f")
+        self.date = datetime.fromisoformat(data["date"])
         self.amount = float(data["operationAmount"]["amount"])
         self.currency_name = data["operationAmount"]["currency"]["name"]
         self.currency_code = data["operationAmount"]["currency"]["code"]
